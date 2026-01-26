@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whoop Authorization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:-apple-system,system-ui,sans-serif;max-width:600px;margin:0 auto;padding:40px 20px;line-height:1.6;color:#333;text-align:center}
+    h1{color:#111}
+    .code-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:20px;margin:20px 0;word-break:break-all;font-family:monospace;font-size:14px}
+    .success{color:#22c55e}
+    .error{color:#ef4444}
+    button{background:#111;color:#fff;border:none;padding:12px 24px;border-radius:6px;cursor:pointer;font-size:16px}
+    button:hover{background:#333}
+  </style>
+</head>
+<body>
+  <h1>Whoop Authorization</h1>
+  <div id="status"></div>
+  <div id="code-container" style="display:none">
+    <p>Your authorization code:</p>
+    <div class="code-box" id="auth-code"></div>
+    <button onclick="copyCode()">Copy Code</button>
+    <p style="margin-top:20px;color:#666;font-size:14px">Paste this code into your Whoop Sleep Dashboard app.</p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const statusEl = document.getElementById('status');
+    const codeContainer = document.getElementById('code-container');
+    const codeEl = document.getElementById('auth-code');
+    
+    if (error) {
+      statusEl.innerHTML = '<p class="error">Authorization failed: ' + error + '</p>';
+    } else if (code) {
+      statusEl.innerHTML = '<p class="success">✓ Authorization successful!</p>';
+      codeEl.textContent = code;
+      codeContainer.style.display = 'block';
+      
+      // Try to send to local dashboard if running
+      fetch('http://localhost:3850/whoop/callback?code=' + encodeURIComponent(code), {mode: 'no-cors'})
+        .then(() => console.log('Sent to local dashboard'))
+        .catch(() => console.log('Local dashboard not running, manual copy needed'));
+    } else {
+      statusEl.innerHTML = '<p>Waiting for authorization...</p>';
+    }
+    
+    function copyCode() {
+      navigator.clipboard.writeText(code).then(() => {
+        document.querySelector('button').textContent = 'Copied!';
+        setTimeout(() => document.querySelector('button').textContent = 'Copy Code', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
