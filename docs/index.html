@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINMAX - eCommerce Consulting & Operational Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #1a1a1a;
+            --soft-gray: #6b7280;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --accent-blue: #3b82f6;
+            --text-dark: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary-black);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-black);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-black);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--soft-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .service-card p {
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .team-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .team-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 1.5rem;
+        }
+
+        .team-text p {
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .team-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .team-feature-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .team-feature-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-feature-desc {
+            font-size: 0.9rem;
+            color: var(--soft-gray);
+            line-height: 1.4;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .stats-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .stats-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-text p {
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--soft-gray);
+            font-weight: 500;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 300px;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Browser Window Frame */
+        .browser-frame {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .browser-header {
+            height: 28px;
+            background: linear-gradient(to bottom, #e8e8e8, #d6d6d6);
+            border-bottom: 1px solid #bbb;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 6px;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .browser-dot.red { background: #ff5f57; }
+        .browser-dot.yellow { background: #ffbd2e; }
+        .browser-dot.green { background: #28ca42; }
+
+        .browser-url {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 2px 6px;
+            margin-left: 40px;
+            font-size: 9px;
+            color: #666;
+        }
+
+        .browser-content {
+            height: calc(100% - 29px);
+            overflow: hidden;
+        }
+
+        /* Google Analytics Style */
+        .analytics-header {
+            background: #1a73e8;
+            color: white;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .analytics-nav {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dadce0;
+            padding: 8px 12px;
+            font-size: 10px;
+            color: #5f6368;
+        }
+
+        .analytics-metrics {
+            padding: 12px;
+        }
+
+        .metric-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .metric-box {
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a73e8;
+            line-height: 1;
+        }
+
+        .metric-title {
+            font-size: 9px;
+            color: #5f6368;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .analytics-chart {
+            height: 80px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDYwTDI1IDUwTDUwIDMwTDc1IDQwTDEwMCAyNUwxMjUgMzVMMTUwIDIwTDE3NSAzMEwyMDAgMTUiIHN0cm9rZT0iIzFhNzNlOCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+');
+            background-size: 100% 100%;
+            border-radius: 4px;
+        }
+
+        /* Shopify Style */
+        .shopify-header {
+            background: #00848e;
+            color: white;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .shopify-logo {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .shopify-sidebar {
+            background: #f6f6f7;
+            border-right: 1px solid #e1e1e1;
+            width: 60px;
+            float: left;
+            height: 242px;
+        }
+
+        .shopify-main {
+            margin-left: 61px;
+            padding: 12px;
+            background: white;
+        }
+
+        .shopify-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .shopify-card {
+            background: #f6f6f7;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .shopify-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #202223;
+        }
+
+        .shopify-label {
+            font-size: 9px;
+            color: #6d7175;
+            margin-top: 2px;
+        }
+
+        /* Tableau Style */
+        .tableau-header {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            padding: 6px 12px;
+            font-size: 10px;
+            color: #333;
+        }
+
+        .tableau-toolbar {
+            background: #fafafa;
+            border-bottom: 1px solid #ddd;
+            padding: 4px 12px;
+            font-size: 9px;
+            color: #666;
+        }
+
+        .tableau-viz {
+            padding: 12px;
+            background: white;
+        }
+
+        .tableau-chart {
+            height: 120px;
+            background: linear-gradient(45deg, #4285f4 0%, #34a853 25%, #fbbc04 50%, #ea4335 75%, #673ab7 100%);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .tableau-chart::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 4px;
+        }
+
+        /* HubSpot Style */
+        .hubspot-header {
+            background: #ff7a59;
+            color: white;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .hubspot-nav {
+            background: #f5f8fa;
+            padding: 8px 12px;
+            font-size: 10px;
+            color: #33475b;
+            border-bottom: 1px solid #cbd6e2;
+        }
+
+        .hubspot-grid {
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .hubspot-widget {
+            background: white;
+            border: 1px solid #cbd6e2;
+            border-radius: 3px;
+            padding: 12px;
+        }
+
+        .hubspot-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff7a59;
+        }
+
+        .hubspot-text {
+            font-size: 9px;
+            color: #7c98b6;
+            margin-top: 4px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* FAQ hover effect removed */
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--soft-gray);
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta p {
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            margin-top: 2rem;
+            color: var(--soft-gray);
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .contact-form {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            /* Header Mobile */
+            header {
+                padding: 0 30px;
+            }
+
+            .navbar {
+                padding: 1rem 0;
+                margin: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                margin-left: 0;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.9rem;
+                margin-right: 0;
+            }
+
+            /* Hero Mobile */
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+
+            .hero-image img {
+                height: 250px;
+            }
+
+            /* Services Mobile */
+            .services {
+                padding: 3rem 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            /* Team Mobile */
+            .team-section {
+                padding: 3rem 0;
+            }
+
+            .team-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-image img {
+                height: 250px;
+            }
+
+            .team-text h2 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .team-features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .team-feature-card {
+                padding: 1.25rem;
+            }
+
+            .team-feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            /* Stats Mobile */
+            .stats-section {
+                padding: 3rem 0;
+            }
+
+            .stats-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-text {
+                text-align: center;
+            }
+
+            .stats-text h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Portfolio Mobile */
+            .portfolio {
+                padding: 3rem 0;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .portfolio-item {
+                height: 250px;
+            }
+
+            .browser-url {
+                font-size: 8px;
+                margin-left: 20px;
+            }
+
+            .metric-number {
+                font-size: 14px;
+            }
+
+            /* FAQ Mobile */
+            .faq {
+                padding: 3rem 0;
+            }
+
+            .faq-question {
+                padding: 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.2rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            /* Contact Form Mobile */
+            .contact-form-section {
+                padding: 3rem 0;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                margin: 0 10px;
+                max-width: none;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            .form-submit {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            /* Footer Mobile */
+            footer {
+                padding: 2rem 0 1rem;
+            }
+
+            .footer-cta h2 {
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+
+            .footer-cta p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-bottom p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            /* Section Headers Mobile */
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 25px;
+            }
+
+            header {
+                padding: 0 25px;
+            }
+
+            .navbar {
+                padding: 0.8rem 0;
+                margin: 0;
+            }
+
+            .logo img {
+                height: 26px;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .portfolio-item {
+                height: 200px;
+            }
+
+            .browser-header {
+                height: 24px;
+            }
+
+            .browser-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .browser-url {
+                display: none;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar container">
+            <div class="logo">
+                <img src="assets/minmax-logo.png" alt="MINMAX Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Crafting Digital Excellence with Creative Ingenuity</h1>
+                    <p>Transform your eCommerce operations with AI-powered insights, data-driven strategies, and operational intelligence that drives real results.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">Get Started</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&crop=face" alt="Creative Team" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Digital Agency Services</h2>
+                <p>We combine strategic thinking with technical expertise to deliver solutions that accelerate your eCommerce growth and operational efficiency.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>eCommerce Strategy</h3>
+                    <p>Data-driven growth strategies that optimize your customer acquisition, retention, and lifetime value through intelligent funnel design.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Analytics</h3>
+                    <p>Transform raw data into actionable insights with custom dashboards, automated reporting, and predictive analytics.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Automation</h3>
+                    <p>Streamline operations with intelligent automation for customer support, inventory management, and marketing workflows.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Process Optimization</h3>
+                    <p>Identify bottlenecks and implement efficient systems that scale your operations without increasing headcount.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Growth Marketing</h3>
+                    <p>Performance-driven marketing strategies across paid social, email, and content channels with continuous optimization.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Business Intelligence</h3>
+                    <p>Comprehensive business intelligence solutions that provide real-time visibility into your operations and market opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="about">
+        <div class="container">
+            <div class="team-content">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" alt="Our Creative Team" />
+                </div>
+                <div class="team-text">
+                    <h2>Collaborate with Our Creative Team</h2>
+                    <p>Our expert team combines deep eCommerce experience with cutting-edge technology to deliver solutions that drive measurable results for your business.</p>
+                    <div class="team-features">
+                        <div class="team-feature-card">
+                            <div class="team-feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="team-feature-title">Thoughtful Planning</div>
+                            <div class="team-feature-desc">Strategic approach to every project</div>
+                        </div>
+                        <div class="team-feature-card">
+                            <div class="team-feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="team-feature-title">Creative Team</div>
+                            <div class="team-feature-desc">Diverse expertise and fresh perspectives</div>
+                        </div>
+                        <div class="team-feature-card">
+                            <div class="team-feature-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="team-feature-title">Smart Execution</div>
+                            <div class="team-feature-desc">Efficient implementation and delivery</div>
+                        </div>
+                        <div class="team-feature-card">
+                            <div class="team-feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="team-feature-title">Data-Driven Results</div>
+                            <div class="team-feature-desc">Measurable impact on your business</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-content">
+                <div class="stats-text">
+                    <h2>We are Ready to Provide the Best Service</h2>
+                    <p>With proven expertise across eCommerce, data analytics, and operational intelligence, we deliver results that matter to your bottom line.</p>
+                    <a href="#contact" class="btn-primary">Get Started</a>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">120+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">110+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Proprietary Tools</h2>
+                <p>Explore our portfolio of successful eCommerce transformations and operational intelligence implementations.</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Google Analytics Style - eCommerce Dashboard -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">analytics.google.com/analytics/web/</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="analytics-header">Google Analytics</div>
+                            <div class="analytics-nav">Home > Ecommerce > Overview</div>
+                            <div class="analytics-metrics">
+                                <div class="metric-row">
+                                    <div class="metric-box">
+                                        <div class="metric-number">$2,427,381</div>
+                                        <div class="metric-title">Revenue</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-number">15.2%</div>
+                                        <div class="metric-title">Growth Rate</div>
+                                    </div>
+                                </div>
+                                <div class="analytics-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shopify Analytics Style - Customer Analytics -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">minmax-store.myshopify.com/admin/analytics</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="shopify-header">
+                                <div class="shopify-logo"></div>
+                                MINMAX Store - Customer Analytics
+                            </div>
+                            <div class="shopify-sidebar"></div>
+                            <div class="shopify-main">
+                                <div class="shopify-cards">
+                                    <div class="shopify-card">
+                                        <div class="shopify-value">45,783</div>
+                                        <div class="shopify-label">Total customers</div>
+                                    </div>
+                                    <div class="shopify-card">
+                                        <div class="shopify-value">$324.50</div>
+                                        <div class="shopify-label">Average LTV</div>
+                                    </div>
+                                </div>
+                                <div style="background: #f6f6f7; border: 1px solid #e1e1e1; border-radius: 6px; height: 140px; padding: 8px; font-size: 10px;">
+                                    <div style="background: white; border-radius: 4px; height: 100%; padding: 8px;">
+                                        <div style="color: #202223; font-weight: 600; margin-bottom: 4px;">Customer Acquisition</div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <div style="flex: 1; background: #00848e; height: 60px; border-radius: 2px;"></div>
+                                            <div style="flex: 1; background: #96bf47; height: 45px; border-radius: 2px; margin-top: 15px;"></div>
+                                            <div style="flex: 1; background: #bf4747; height: 75px; border-radius: 2px;"></div>
+                                            <div style="flex: 1; background: #9647bf; height: 35px; border-radius: 2px; margin-top: 25px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HubSpot Style - Marketing Automation -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">app.hubspot.com/marketing/campaigns</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="hubspot-header">HubSpot Marketing Hub</div>
+                            <div class="hubspot-nav">Campaigns > Performance Dashboard</div>
+                            <div class="hubspot-grid">
+                                <div class="hubspot-widget">
+                                    <div class="hubspot-number">2.84%</div>
+                                    <div class="hubspot-text">Average CTR</div>
+                                </div>
+                                <div class="hubspot-widget">
+                                    <div class="hubspot-number">12.5%</div>
+                                    <div class="hubspot-text">Conversion Rate</div>
+                                </div>
+                            </div>
+                            <div style="padding: 0 12px;">
+                                <div style="background: white; border: 1px solid #cbd6e2; border-radius: 3px; height: 100px; padding: 8px;">
+                                    <div style="font-size: 10px; color: #33475b; margin-bottom: 8px; font-weight: 500;">Campaign Performance</div>
+                                    <div style="display: flex; gap: 4px; height: 60px; align-items: flex-end;">
+                                        <div style="background: #ff7a59; width: 16px; height: 45px; border-radius: 2px;"></div>
+                                        <div style="background: #00bda5; width: 16px; height: 60px; border-radius: 2px;"></div>
+                                        <div style="background: #7c98b6; width: 16px; height: 35px; border-radius: 2px;"></div>
+                                        <div style="background: #ff7a59; width: 16px; height: 50px; border-radius: 2px;"></div>
+                                        <div style="background: #00bda5; width: 16px; height: 40px; border-radius: 2px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Inventory Tool -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">inventory.minmaxtools.com/dashboard</div>
+                        </div>
+                        <div class="browser-content">
+                            <div style="background: #2d3748; color: white; padding: 10px 12px; font-size: 11px; display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 16px; height: 16px; background: linear-gradient(45deg, #4a90e2, #357abd); border-radius: 2px;"></div>
+                                MINMAX Inventory Intelligence
+                            </div>
+                            <div style="padding: 12px; background: #f7fafc;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                        <div style="font-size: 18px; font-weight: 700; color: #38a169;">98.2%</div>
+                                        <div style="font-size: 10px; color: #718096; margin-top: 4px;">IN STOCK</div>
+                                    </div>
+                                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; text-align: center;">
+                                        <div style="font-size: 18px; font-weight: 700; color: #ed8936;">4.2d</div>
+                                        <div style="font-size: 10px; color: #718096; margin-top: 4px;">AVG SHIP TIME</div>
+                                    </div>
+                                </div>
+                                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 6px; height: 120px;">
+                                    <div style="background: #f7fafc; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-size: 10px; font-weight: 600; color: #4a5568;">
+                                        Inventory Levels by Product
+                                    </div>
+                                    <div style="padding: 8px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 9px;">
+                                            <span>Product Alpha</span>
+                                            <span style="color: #38a169;">✓ 1,247 units</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 9px;">
+                                            <span>Product Beta</span>
+                                            <span style="color: #ed8936;">⚠ 89 units</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 9px;">
+                                            <span>Product Gamma</span>
+                                            <span style="color: #38a169;">✓ 2,341 units</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 9px;">
+                                            <span>Product Delta</span>
+                                            <span style="color: #e53e3e;">✗ 12 units</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tableau Style - Growth Analytics -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">public.tableau.com/app/profile/minmax</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="tableau-header">Tableau Public - MINMAX Growth Analytics</div>
+                            <div class="tableau-toolbar">File Edit Data Worksheet Dashboard Story</div>
+                            <div class="tableau-viz">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px;">
+                                    <div style="background: #f5f5f5; border: 1px solid #ddd; padding: 8px; text-align: center; border-radius: 4px;">
+                                        <div style="font-size: 16px; font-weight: 700; color: #1f77b4;">28.4%</div>
+                                        <div style="font-size: 9px; color: #666;">MOM Growth</div>
+                                    </div>
+                                    <div style="background: #f5f5f5; border: 1px solid #ddd; padding: 8px; text-align: center; border-radius: 4px;">
+                                        <div style="font-size: 16px; font-weight: 700; color: #ff7f0e;">$147</div>
+                                        <div style="font-size: 9px; color: #666;">Avg Order Value</div>
+                                    </div>
+                                </div>
+                                <div class="tableau-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Power BI Style - Operational BI -->
+                <div class="portfolio-item">
+                    <div class="browser-frame">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <div class="browser-dot red"></div>
+                                <div class="browser-dot yellow"></div>
+                                <div class="browser-dot green"></div>
+                            </div>
+                            <div class="browser-url">app.powerbi.com/groups/minmax/dashboards</div>
+                        </div>
+                        <div class="browser-content">
+                            <div style="background: #f2c811; color: #323130; padding: 8px 12px; font-size: 11px; font-weight: 600;">
+                                Microsoft Power BI - Operations Dashboard
+                            </div>
+                            <div style="background: #f3f2f1; padding: 8px 12px; font-size: 10px; color: #323130;">
+                                MINMAX Workspace > Operational Intelligence
+                            </div>
+                            <div style="padding: 12px; background: #faf9f8;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                                    <div style="background: white; border: 1px solid #c8c6c4; padding: 12px; text-align: center;">
+                                        <div style="font-size: 20px; font-weight: 700; color: #0078d4;">94.1%</div>
+                                        <div style="font-size: 10px; color: #605e5c; margin-top: 4px;">EFFICIENCY</div>
+                                    </div>
+                                    <div style="background: white; border: 1px solid #c8c6c4; padding: 12px; text-align: center;">
+                                        <div style="font-size: 20px; font-weight: 700; color: #107c10;">-23%</div>
+                                        <div style="font-size: 10px; color: #605e5c; margin-top: 4px;">COST REDUCTION</div>
+                                    </div>
+                                </div>
+                                <div style="background: white; border: 1px solid #c8c6c4; height: 100px; padding: 12px;">
+                                    <div style="font-size: 10px; color: #323130; margin-bottom: 8px; font-weight: 600;">Operational KPIs</div>
+                                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 9px;">
+                                            <span>Customer Support</span>
+                                            <div style="width: 50px; height: 4px; background: #c8c6c4; border-radius: 2px; overflow: hidden;">
+                                                <div style="width: 94%; height: 100%; background: #0078d4;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 9px;">
+                                            <span>Order Processing</span>
+                                            <div style="width: 50px; height: 4px; background: #c8c6c4; border-radius: 2px; overflow: hidden;">
+                                                <div style="width: 89%; height: 100%; background: #107c10;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 9px;">
+                                            <span>Fulfillment</span>
+                                            <div style="width: 50px; height: 4px; background: #c8c6c4; border-radius: 2px; overflow: hidden;">
+                                                <div style="width: 96%; height: 100%; background: #0078d4;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+                <p>Get answers to common questions about our services and approach.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is MINMAX?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        MINMAX is an eCommerce consulting firm specializing in operational intelligence, data analytics, and AI-powered growth strategies. We help businesses optimize their operations and scale efficiently.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What's different about MINMAX?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We combine deep eCommerce expertise with advanced data analytics and AI automation. Our focus is on operational intelligence that drives measurable business results, not just reporting.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What services does MINMAX offer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer eCommerce strategy, data analytics, AI automation, process optimization, growth marketing, and business intelligence solutions tailored to your business needs.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How does MINMAX combine creativity and technology?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We blend strategic creativity with technical implementation, ensuring that innovative solutions are grounded in data and designed for real-world business impact.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How is the collaboration work process with MINMAX?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We start with a comprehensive analysis of your current operations, then develop a customized strategy with clear milestones and deliverables. Our process emphasizes transparency, regular communication, and measurable results.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get Started</h2>
+                <p>Ready to transform your eCommerce operations? Get in touch with our team.</p>
+            </div>
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project and how we can help..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-cta">
+                    <h2>Explore your potential and begin your journey today.</h2>
+                    <p>Ready to transform your eCommerce operations? Let's discuss your goals and create a strategy for sustainable growth.</p>
+                </div>
+                <!-- Footer links removed -->
+                <div class="footer-bottom">
+                    <p>&copy; 2026 MINMAX LLC. All rights reserved.</p>
+                    <p style="margin-top: 0.5rem;">348 Calle Méndez Vigo, #1008, Dorado, Puerto Rico, 00646</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.faq-question i').forEach(item => {
+                if (item !== icon) {
+                    item.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current item
+            answer.classList.toggle('active');
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--white)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
