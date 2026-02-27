@@ -1583,24 +1583,36 @@
                 <h2>Get Started</h2>
                 <p>Ready to transform your eCommerce operations? Get in touch with our team.</p>
             </div>
-            <form class="contact-form" action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
+            <form class="contact-form" id="contactForm">
+                <div id="form-content">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project and how we can help..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
+                <div id="success-message" style="display: none;">
+                    <div style="text-align: center; padding: 3rem 0;">
+                        <div style="width: 80px; height: 80px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+                            <i class="fas fa-check" style="font-size: 2rem; color: white;"></i>
+                        </div>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem;">Thank You!</h3>
+                        <p style="font-size: 1.1rem; color: var(--soft-gray); margin-bottom: 2rem; line-height: 1.6;">We've received your message and will get back to you within 24 hours.</p>
+                        <button type="button" class="btn-primary" onclick="resetForm()">Send Another Message</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your project and how we can help..." required></textarea>
-                </div>
-                <button type="submit" class="form-submit">Send Message</button>
             </form>
         </div>
     </section>
@@ -1674,6 +1686,25 @@
                 header.style.backdropFilter = 'none';
             }
         });
+
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+            
+            // Hide form content and show success message
+            document.getElementById('form-content').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Optional: Send form data to an email service or webhook
+            // You can integrate with services like Formspree, Netlify Forms, etc. later
+        });
+
+        // Reset form function
+        function resetForm() {
+            document.getElementById('form-content').style.display = 'block';
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('contactForm').reset();
+        }
     </script>
 </body>
 </html>
